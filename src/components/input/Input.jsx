@@ -4,7 +4,7 @@ import "./Input.css";
 import Button from "../Button/Button";
 
 const Input = (props) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(props.todoDesc);
   const handleImputValue = (e) => {
     setInputValue(e.target.value);
     console.log(inputValue);

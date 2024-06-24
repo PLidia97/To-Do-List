@@ -22,6 +22,16 @@ const Card = () => {
 
   console.log(todos);
 
+  const ediTask = (taskDesc, id) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, todoDesc: taskDesc, isEditing: !todo.isEditing }
+          : todo
+      )
+    );
+  };
+
   const deleteTodo = (id) => {
     setTodos(todos.filter((todo) => todo.id !== id));
     console.log(id);
@@ -39,10 +49,12 @@ const Card = () => {
       {todos.map((todo, index) =>
         todo.isEditing ? (
           <EditInput
-            placeholderText="What is the task"
+            placeholderText="Edit your  task"
             buttonText="Edit Task"
-            addTodo={addTodo}
+            editTodo={ediTask}
             key={index}
+            todoDesc={todo.todoDesc}
+            id={todo.id}
           />
         ) : (
           <Todo

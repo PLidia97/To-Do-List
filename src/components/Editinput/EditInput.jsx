@@ -4,15 +4,14 @@ import "./EditInput.css";
 import Button from "../Button/Button";
 
 const EditInput = (props) => {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(props.todoDesc);
   const handleImputValue = (e) => {
     setInputValue(e.target.value);
     console.log(inputValue);
   };
 
-  const handleAddtask = () => {
-    props.addTodo(inputValue);
-    setInputValue("");
+  const handleEditTask = () => {
+    props.editTodo(inputValue, props.id);
   };
 
   return (
@@ -23,7 +22,7 @@ const EditInput = (props) => {
         value={inputValue}
         onChange={handleImputValue}
       />
-      <Button buttonText={props.buttonText} clickFunction={handleAddtask} />
+      <Button buttonText={props.buttonText} clickFunction={handleEditTask} />
     </div>
   );
 };
